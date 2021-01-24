@@ -22,7 +22,12 @@ def captured_output():
 
 # implement this function
 def is_perfect(n):
-    pass
+    sum = 0
+    for i in range(1,n):
+        if n%i == 0:
+            sum+=i
+    return sum == n
+    
 
 # (3 points)
 def test1():
@@ -40,7 +45,16 @@ def test1():
 
 # implement this function
 def multiples_of_3_and_5(n):
-    pass
+    sum = 0
+    x = []
+    for i in range(1,n):
+        if i%3 == 0:
+            x.append(i)
+        if i%5 == 0 and i not in x:
+            x.append(i)
+    for i in range(len(x)):
+        sum+=x[i]
+    return sum
 
 # (3 points)
 def test2():
@@ -53,7 +67,13 @@ def test2():
 # EXERCISE 3
 #################################################################################
 def integer_right_triangles(p):
-    pass
+    x =[]
+    for a in range(1,p):
+        for b in range(1,p):
+            for c in range(1,p):
+                if (a**2 + b**2 == c**2) and (a<=b) and (a+b+c==p) and (b<c):
+                    x.append((a,b,c))
+    return len(x)
 
 def test3():
     tc = unittest.TestCase()
