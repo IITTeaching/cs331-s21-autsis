@@ -87,7 +87,21 @@ def test3():
 
 # implement this function
 def gen_pattern(chars):
-    pass
+  num = len(chars)*2-1+(len(chars)-1)*2
+  for i in range(len(chars)-1, -1, -1):
+    backHalf = chars[i:]
+    frontHalf = chars[i+1:]
+    frontHalf = frontHalf[::-1]
+    line = frontHalf +backHalf
+
+    line = ".".join(line)
+    print(line.center(num, "."))
+  for i in range(1, len(chars)):
+    back = (chars[i:])
+    front = (chars[i+1:])
+    line = front+back
+    line = ".".join(line)
+    print(line.center(num, "."))
 
 def test4():
     tc = unittest.TestCase()
