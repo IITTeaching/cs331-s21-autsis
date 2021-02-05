@@ -67,13 +67,14 @@ def test2():
 # EXERCISE 3
 #################################################################################
 def integer_right_triangles(p):
-    x =[]
+    x =0
     for a in range(1,p):
         for b in range(1,p):
-            for c in range(1,p):
-                if (a**2 + b**2 == c**2) and (a<=b) and (a+b+c==p) and (b<c):
-                    x.append((a,b,c))
-    return len(x)
+            c = p-a-b
+            if a+b+c==p:
+                if (a**2 + b**2 == c**2) and (a<=b) and (b<c):
+                    x+=1
+    return x
 
 def test3():
     tc = unittest.TestCase()
@@ -99,6 +100,7 @@ def gen_pattern(chars):
   for i in range(1, len(chars)):
     back = (chars[i:])
     front = (chars[i+1:])
+    front = front[::-1]
     line = front+back
     line = ".".join(line)
     print(line.center(num, "."))
