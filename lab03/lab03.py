@@ -131,6 +131,14 @@ class PrefixSearcher():
         Initializes a prefix searcher using a document and a maximum
         search string length k.
         """
+        lst = []
+        self.k = k
+        self.document = document
+        for x in range(len(document) - (k-1)):
+          lst.append(document[x:x+k])
+        for x in range(len(document)-(k-1), len(document)):
+          lst.append(document[x:])  
+        self.list = mysort(lst, lambda x,y:  0 if x == y else (-1 if x < y else 1)) 
         pass
 
     def search(self, q):
@@ -140,6 +148,9 @@ class PrefixSearcher():
         length up to n). If q is longer than n, then raise an
         Exception.
         """
+        if len(q) >self.k:
+          raise ValueError
+        return mybinsearch(self.list, q, lambda x,y: 0 if x == y else (-1 if x < y else 1)) != -1
         pass
 
 # 30 Points
