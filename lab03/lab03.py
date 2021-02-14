@@ -35,17 +35,17 @@ def mybinsearch(lst: List[T], elem: S, compare: Callable[[T, S], int]) -> int:
     """
     left = 0
     right = len(lst) - 1
-    mid = 0
     while left<right:
       mid = (left+right)//2
-      if compare(lst[mid], elem) == 1:
+      if compare(lst[mid], elem) == -1:
         left = mid +1
-      elif compare(lst[mid], elem) == -1:
+      elif compare(lst[mid], elem) == 1:
         right = mid-1
+      elif right!=left:
+        right = mid
       else:
         return mid
-    return -1
-
+    return left if compare(lst[left], elem) == 0 else -1
     pass
 
 class Student():
