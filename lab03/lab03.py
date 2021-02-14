@@ -150,7 +150,7 @@ class PrefixSearcher():
         """
         if len(q) >self.k:
           raise ValueError
-        return mybinsearch(self.list, q, lambda x,y: 0 if x == y else (-1 if x < y else 1)) != -1
+        return mybinsearch(self.list, q, lambda x,y: 0 if x[:min(len(x),len(y))] == y else (-1 if x[:min(len(x),len(y))] < y else 1)) != -1
         pass
 
 # 30 Points
