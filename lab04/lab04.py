@@ -117,11 +117,13 @@ class ArrayList:
         and enclosed by square brackets. E.g., for a list containing values
         1, 2 and 3, returns '[1, 2, 3]'."""
         ### BEGIN SOLUTION
+        return '[' + ', '.join(str(i) for i in self) + ']'
         ### END SOLUTION
 
     def __repr__(self):
         """Supports REPL inspection. (Same behavior as `str`.)"""
         ### BEGIN SOLUTION
+        return '[' + ', '.join(str(self[i]) for i in range(len(self))) + ']'
         ### END SOLUTION
 
 
@@ -143,12 +145,20 @@ class ArrayList:
         """Deletes and returns the element at idx (which is the last element,
         by default)."""
         ### BEGIN SOLUTION
+        x = self[idx]
+        del self[idx]
+        return x
         ### END SOLUTION
 
     def remove(self, value):
         """Removes the first (closest to the front) instance of value from the
         list. Raises a ValueError if value is not found in the list."""
         ### BEGIN SOLUTION
+        for i in range(self.len):
+          if self.data[i] == value:
+            del self[i]
+            return None
+        raise ValueError("Value not found in list")
         ### END SOLUTION
 
 
@@ -163,6 +173,9 @@ class ArrayList:
     def __contains__(self, value):
         """Implements `val in self`. Returns true if value is found in this list."""
         ### BEGIN SOLUTION
+        for i in range(self.len):
+          if self.data[i] == value:
+            return True
         ### END SOLUTION
 
 
@@ -171,6 +184,7 @@ class ArrayList:
     def __len__(self):
         """Implements `len(self)`"""
         ### BEGIN SOLUTION
+        return self.len
         ### END SOLUTION
 
     def min(self):
@@ -194,6 +208,11 @@ class ArrayList:
     def count(self, value):
         """Returns the number of times value appears in this list."""
         ### BEGIN SOLUTION
+        counter = 0
+        for i in range(self.len):
+          if self.data[i] == value:
+            counter+=1
+        return counter
         ### END SOLUTION
 
 
@@ -214,6 +233,10 @@ class ArrayList:
         """Returns a new ArrayList instance (with a separate data store), that
         contains the same values as this list."""
         ### BEGIN SOLUTION
+        x = ArrayList(self.len)
+        for i in range(self.len):
+          x[i] = self.data[i]
+        return x
         ### END SOLUTION
 
     def extend(self, other):
@@ -227,6 +250,8 @@ class ArrayList:
     def __iter__(self):
         """Supports iteration (via `iter(self)`)"""
         ### BEGIN SOLUTION
+        for i in range(self.len):
+          yield self.data[i]
         ### END SOLUTION
 
 ################################################################################
