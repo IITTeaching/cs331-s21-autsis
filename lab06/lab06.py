@@ -51,6 +51,16 @@ def check_delimiters(expr):
     delim_closers = '})]>'
 
     ### BEGIN SOLUTION
+    s = Stack()
+    for c in expr:
+        if c in delim_openers:
+            s.push(c)
+        elif c in delim_closers:
+            try:
+                s.pop()
+            except:
+                return False
+    return s.empty()
     ### END SOLUTION
 
 ################################################################################
