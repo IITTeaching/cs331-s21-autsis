@@ -53,11 +53,11 @@ def check_delimiters(expr):
     ### BEGIN SOLUTION
     s = Stack()
     for c in expr:
-        if c in delim_openers:
-            s.push(c)
-        elif c in delim_closers:
-                if s.empty() or delim_closers.index(c) != delim_openers.index(s.pop()):
-                  return False
+      if c in delim_openers:
+        s.push(c)
+      elif c in delim_closers:
+        if s.empty() or delim_closers.index(c) != delim_openers.index(s.pop()):
+          return False
     return s.empty()
     ### END SOLUTION
 
