@@ -8,7 +8,7 @@ def max(data):
       max = len(str(data[i]))
   return max
 
-def equalizeData(data, mL):
+def equalize(data, mL):
   lst = []
   for item in data:
     if isinstance(item, int):
@@ -31,7 +31,7 @@ def Sort(lst, pos):
 
 def radixSort(data):
   longest = max(data)
-  lst = equalizeData(data, longest)
+  lst = equalize(data, longest)
   for i in range(longest):
     lst = Sort(lst, longest-i-1)
   lst = [item.strip('\0') for item in [''.join(item) for item in lst]]
