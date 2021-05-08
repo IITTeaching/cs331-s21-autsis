@@ -6,18 +6,42 @@ def quicksort(lst,pivot_fn):
 
 def qsort(lst,low,high,pivot_fn):
     ### BEGIN SOLUTION
+    if low < high:
+        part = Hoare(lst,low,high,pivot_fn)
+        qsort(lst, low, part, pivot_fn)
+        qsort(lst, part + 1, high, pivot_fn)
     ### END SOLUTION
+    
+def Hoare(lst, low, high, pivot_fn):
+    pidx = lst[pivot_fn(lst, low, high)]
+    pivot = lst[pidx]
+    lst[low], lst[pidx], pidx = lst[pidx], lst[low], low
+    i = low
+    j = high
+    while i < j:
+        while lst[i] < pivot:
+            i += 1
+        while lst[j] > pivot:
+            j -= 1
+        lst[i], lst[j] = lst[j], lst[i]
+    lst[low], lst[j] = lst[j], lst[low]
+    return j
 
 def pivot_first(lst,low,high):
     ### BEGIN SOLUTION
+    return low
     ### END SOLUTION
 
 def pivot_random(lst,low,high):
     ### BEGIN SOLUTION
+    return random.randrange(low, high)
     ### END SOLUTION
 
 def pivot_median_of_three(lst,low,high):
     ### BEGIN SOLUTION
+    x = [(low,lst[low]), ((low + high) // 2,lst[(low + high) // 2]), (high,lst[high])]
+    x.sort(key = lambda y: y[1])
+    return x[1][0]
     ### END SOLUTION
 
 ################################################################################
